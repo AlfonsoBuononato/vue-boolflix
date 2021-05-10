@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <Header @cercaFilm="searchFilm()" />
+    <Header @cercaFilm="searchFilm" />
 
-    <Main :films="dataFilms" />
+    <Main :films="filteredFilm" :serie="dataSerie" />
   </div>
 </template>
 
@@ -22,10 +22,27 @@ export default {
         "https://api.themoviedb.org/3/search/movie?api_key=cb3537543f166a0f6e6c859d2b931944&query=batman&language=it-IT",
       dataFilms: [],
       searchingFilm: "",
+      /* SERIE */
+      apiUrlSerie:
+        "https://api.themoviedb.org/3/search/tv?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT&query=peaky blinders",
+      dataSerie: [],
     };
+  },
+  computed: {
+    filteredFilm() {
+      if (this.searchingFilm === "") {
+        return this.dataFilms;
+      }
+      return this.dataFilms.filter((element) => {
+        return element.title
+          .toLowerCase()
+          .includes(this.searchingFilm.toLowerCase());
+      });
+    },
   },
   created() {
     this.getArray();
+    this.getArraySerie();
   },
   methods: {
     getArray() {
@@ -33,16 +50,23 @@ export default {
         .get(this.apiURL)
         .then((res) => {
           this.dataFilms = res.data.results;
-          console.log(this.dataFilms);
         })
         .catch((error) => {
           console.log(error);
         });
     },
+    getArraySerie() {
+      axios
+        .get(this.apiUrlSerie)
+        .then((res) => {
+          this.dataSerie = res.data.results;
+        })
+        .catch((errore) => {
+          console.log(errore);
+        });
+    },
     searchFilm(testo) {
-      console.log("ciao");
       this.searchingFilm = testo;
-      console.log(this.searchingFilm);
     },
   },
 };
