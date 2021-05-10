@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header @cercaFilm="searchFilm()" />
+
+    <Main :films="dataFilms" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import axios from "axios";
+import Header from "@/components/Header.vue";
+import Main from "@/components/Main.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Main,
+  },
+  data() {
+    return {
+      apiURL:
+        "https://api.themoviedb.org/3/search/movie?api_key=cb3537543f166a0f6e6c859d2b931944&query=batman&language=it-IT",
+      dataFilms: [],
+      searchingFilm: "",
+    };
+  },
+  created() {
+    this.getArray();
+  },
+  methods: {
+    getArray() {
+      axios
+        .get(this.apiURL)
+        .then((res) => {
+          this.dataFilms = res.data.results;
+          console.log(this.dataFilms);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    searchFilm(testo) {
+      console.log("ciao");
+      this.searchingFilm = testo;
+      console.log(this.searchingFilm);
+    },
+  },
+};
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss"></style>
