@@ -2,7 +2,7 @@
   <div id="app">
     <Header @cercaFilm="searchFilm" />
 
-    <Main :films="filteredFilm" :serie="dataSerie" />
+    <Main :films="filteredFilm" :serie="filteredFilm" />
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
   computed: {
     filteredFilm() {
       if (this.searchingFilm === "") {
-        return this.dataFilms;
+        return this.dataFilms && this.dataSerie;
       }
       return this.dataFilms.filter((element) => {
         return element.title

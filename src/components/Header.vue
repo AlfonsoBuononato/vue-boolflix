@@ -1,7 +1,7 @@
 <template>
   <header>
-    <input v-model="searchFilm" type="text" />
-    <button @click.prevent="$emit('cercaFilm', searchFilm)">
+    <input v-model="inputFilm" type="text" />
+    <button @click.prevent="$emit('cercaFilm', inputFilm)">
       cerca
     </button>
   </header>
@@ -12,7 +12,7 @@ export default {
   name: "Header",
   data() {
     return {
-      searchFilm: "",
+      inputFilm: "",
     };
   },
 };
