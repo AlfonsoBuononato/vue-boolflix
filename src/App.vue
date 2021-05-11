@@ -2,7 +2,7 @@
   <div id="app">
     <Header @cercaFilm="getArray" />
 
-    <Main :films="filteredFilm" />
+    <Film :films="filteredFilm" />
     <Serie :serie="filteredSerie" />
   </div>
 </template>
@@ -10,13 +10,13 @@
 <script>
 import axios from "axios";
 import Header from "@/components/Header.vue";
-import Main from "@/components/Main.vue";
+import Film from "@/components/Film.vue";
 import Serie from "@/components/Serie.vue";
 export default {
   name: "App",
   components: {
     Header,
-    Main,
+    Film,
     Serie,
   },
   data() {
@@ -65,6 +65,12 @@ export default {
         })
         .then((res) => {
           this.dataFilms = res.data.results;
+          res.data.results.forEach((element) => {
+            element.poster_path =
+              "https://image.tmdb.org/t/p/" + "w342" + element.poster_path;
+
+            element.vote_average = Math.ceil(element.vote_average / 2);
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -79,6 +85,12 @@ export default {
         })
         .then((res) => {
           this.dataSerie = res.data.results;
+          res.data.results.forEach((element) => {
+            element.poster_path =
+              "https://image.tmdb.org/t/p/" + "w342" + element.poster_path;
+
+            element.vote_average = Math.ceil(element.vote_average / 2);
+          });
         })
         .catch((errore) => {
           console.log(errore);
