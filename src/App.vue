@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <Header @cercaFilm="searchFilm" />
+    <Header @cercaFilm="getArray" />
 
-    <Main :films="filteredFilm" :serie="filteredFilm" />
+    <Main :films="filteredFilm" />
+    <Serie :serie="filteredSerie" />
   </div>
 </template>
 
@@ -10,54 +11,72 @@
 import axios from "axios";
 import Header from "@/components/Header.vue";
 import Main from "@/components/Main.vue";
+import Serie from "@/components/Serie.vue";
 export default {
   name: "App",
   components: {
     Header,
     Main,
+    Serie,
   },
   data() {
     return {
-      apiURL:
-        "https://api.themoviedb.org/3/search/movie?api_key=cb3537543f166a0f6e6c859d2b931944&query=batman&language=it-IT",
+      apiURL: "https://api.themoviedb.org/3/search/movie",
       dataFilms: [],
       searchingFilm: "",
       /* SERIE */
-      apiUrlSerie:
-        "https://api.themoviedb.org/3/search/tv?api_key=e99307154c6dfb0b4750f6603256716d&language=it-IT&query=peaky blinders",
+      apiUrlSerie: "https://api.themoviedb.org/3/search/tv",
       dataSerie: [],
     };
   },
   computed: {
     filteredFilm() {
       if (this.searchingFilm === "") {
-        return this.dataFilms && this.dataSerie;
+        return this.dataFilms;
       }
+
       return this.dataFilms.filter((element) => {
         return element.title
           .toLowerCase()
           .includes(this.searchingFilm.toLowerCase());
       });
     },
-  },
-  created() {
-    this.getArray();
-    this.getArraySerie();
+    filteredSerie() {
+      if (this.searchingFilm === "") {
+        return this.dataSerie;
+      }
+
+      return this.dataSerie.filter((element) => {
+        return element.name
+          .toLowerCase()
+          .includes(this.searchingFilm.toLowerCase());
+      });
+    },
   },
   methods: {
-    getArray() {
+    getArray(cerca) {
       axios
-        .get(this.apiURL)
+        .get(this.apiURL, {
+          params: {
+            api_key: "cb3537543f166a0f6e6c859d2b931944",
+            query: cerca,
+            language: "it-IT",
+          },
+        })
         .then((res) => {
           this.dataFilms = res.data.results;
         })
         .catch((error) => {
           console.log(error);
         });
-    },
-    getArraySerie() {
       axios
-        .get(this.apiUrlSerie)
+        .get(this.apiUrlSerie, {
+          params: {
+            api_key: "cb3537543f166a0f6e6c859d2b931944",
+            query: cerca,
+            language: "it-IT",
+          },
+        })
         .then((res) => {
           this.dataSerie = res.data.results;
         })

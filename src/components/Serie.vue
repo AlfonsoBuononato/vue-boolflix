@@ -1,9 +1,10 @@
 <template>
+  <!-- SERIE TV -->
   <main>
-    <div v-for="(element, index) in films" :key="index">
+    <div v-for="(element, index) in serie" :key="index">
       <ul>
-        <li>{{ element.title }}</li>
-        <li>{{ element.original_title }}</li>
+        <li>{{ element.original_name }}</li>
+        <li>{{ element.name }}</li>
         <li>
           <img
             v-if="element.original_language === 'it'"
@@ -31,8 +32,8 @@
 
 <script>
 export default {
-  name: "Main",
-  props: ["films"],
+  name: "Serie",
+  props: ["serie"],
 };
 </script>
 
