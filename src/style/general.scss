@@ -2,6 +2,21 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: thin;
+}
+*::-webkit-scrollbar {
+  -webkit-overflow-scrolling: auto;
+  width: 8px;
+  height: 5px;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgb(128, 126, 126);
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+body {
+  background-color: #000;
+  color: #fff;
 }
 li {
   list-style: none;

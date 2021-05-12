@@ -67,7 +67,7 @@ export default {
           this.dataFilms = res.data.results;
           res.data.results.forEach((element) => {
             element.poster_path =
-              "https://image.tmdb.org/t/p/" + "w342" + element.poster_path;
+              "https://image.tmdb.org/t/p/" + "w185" + element.poster_path;
 
             element.vote_average = Math.ceil(element.vote_average / 2);
           });
@@ -87,7 +87,7 @@ export default {
           this.dataSerie = res.data.results;
           res.data.results.forEach((element) => {
             element.poster_path =
-              "https://image.tmdb.org/t/p/" + "w342" + element.poster_path;
+              "https://image.tmdb.org/t/p/" + "w185" + element.poster_path;
 
             element.vote_average = Math.ceil(element.vote_average / 2);
           });
