@@ -115,9 +115,6 @@ export default {
           console.log(error);
         });
     },
-    searchFilm(testo) {
-      this.searchingFilm = testo;
-    },
   },
 };
 </script>

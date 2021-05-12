@@ -7,8 +7,12 @@
         border="0"
     /></a>
     <div class="search">
-      <input v-model="inputFilm" type="text" />
-      <button @click.prevent="$emit('cercaFilm', inputFilm)">
+      <input
+        v-model="inputFilm"
+        type="text"
+        @keyup="$emit('cercaFilm', inputFilm)"
+      />
+      <button>
         cerca
       </button>
     </div>
