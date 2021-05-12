@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @cercaFilm="getArray" />
-
+    <Trand :trand="dataTrand" />
     <Film :films="filteredFilm" />
     <Serie :serie="filteredSerie" />
   </div>
@@ -12,12 +12,14 @@ import axios from "axios";
 import Header from "@/components/Header.vue";
 import Film from "@/components/Film.vue";
 import Serie from "@/components/Serie.vue";
+import Trand from "@/components/Trand.vue";
 export default {
   name: "App",
   components: {
     Header,
     Film,
     Serie,
+    Trand,
   },
   data() {
     return {
@@ -27,7 +29,14 @@ export default {
       /* SERIE */
       apiUrlSerie: "https://api.themoviedb.org/3/search/tv",
       dataSerie: [],
+      /* API TRAND */
+      apiTrand:
+        "https://api.themoviedb.org/3/trending/movie/day?api_key=cb3537543f166a0f6e6c859d2b931944",
+      dataTrand: [],
     };
+  },
+  created() {
+    this.getArrayTrand();
   },
   computed: {
     filteredFilm() {
@@ -94,6 +103,16 @@ export default {
         })
         .catch((errore) => {
           console.log(errore);
+        });
+    },
+    getArrayTrand() {
+      axios
+        .get(this.apiTrand)
+        .then((res) => {
+          this.dataTrand = res.data.results;
+        })
+        .catch((error) => {
+          console.log(error);
         });
     },
     searchFilm(testo) {
