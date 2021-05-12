@@ -1,14 +1,17 @@
 <template>
   <main>
-    <div
-      v-for="(element, index) in films"
-      :key="index"
-      :style="{ backgroundImage: 'url(' + element.poster_path + ')' }"
-    >
-      <ul>
+    <div class="title">
+      <h2>film</h2>
+    </div>
+    <div>
+      <ul
+        v-for="(element, index) in films"
+        :key="index"
+        :style="{ backgroundImage: 'url(' + element.poster_path + ')' }"
+      >
         <li>{{ element.title }}</li>
         <li>{{ element.original_title }}</li>
-        <li>
+        <!-- <li>
           <img
             v-if="element.original_language === 'it'"
             src="../assets/it.png"
@@ -26,7 +29,7 @@
             "
             >{{ element.original_language }}</span
           >
-        </li>
+        </li> -->
         <li>
           <i
             v-for="(element, index) in element.vote_average"
@@ -35,7 +38,7 @@
           ></i>
           <i
             v-for="(element, index) in 5 - element.vote_average"
-            :key="index"
+            :key="'A' + index"
             class="far fa-star"
           >
           </i>
@@ -52,12 +55,6 @@ export default {
 };
 </script>
 
-<style>
-* {
-  color: red;
-}
-
-.active {
-  background-color: white;
-}
+<style scoped lang="scss">
+@import "@/style/film.scss";
 </style>

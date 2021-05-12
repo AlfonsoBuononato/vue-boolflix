@@ -1,0 +1,30 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;
+  a {
+    padding: 15px;
+    margin-left: 20px;
+  }
+}
+
+.search {
+  margin-right: 50px;
+  input {
+    padding: 2px;
+    margin-right: 5px;
+    border: 0;
+    background-color: #c0c0c0;
+    outline: none;
+  }
+  input:focus {
+    border: 2px solid #018cfd;
+  }
+  button {
+    padding: 2px;
+    background-color: #c0c0c0;
+    border: 0;
+    outline: none;
+  }
+}
