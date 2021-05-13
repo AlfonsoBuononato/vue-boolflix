@@ -58,7 +58,7 @@
 <script>
 export default {
   name: "Trand",
-  props: ["trand"],
+  props: ["trand", "films", "serie"],
 };
 </script>
 

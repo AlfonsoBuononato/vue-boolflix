@@ -33,23 +33,24 @@ header {
     cursor: pointer;
   }
   .none {
+    padding: 0;
     animation-name: chiusura-input;
     animation-duration: 4s;
+  }
+  .none:focus {
+    border: 0;
   }
 
   .active {
     display: inline-block;
-    animation-name: apertura-input;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
     width: 150px;
   }
   @keyframes chiusura-ipnut {
     0% {
       width: 150px;
     }
-    98% {
-      width: 0px;
+    100% {
+      width: 0;
     }
   }
 }

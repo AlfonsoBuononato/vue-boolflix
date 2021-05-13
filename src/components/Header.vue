@@ -13,6 +13,7 @@
         type="text"
         @keyup="$emit('cercaFilm', inputFilm)"
         placeholder="Titolo, Film, Serie"
+        ref="input"
       />
       <i class="fas fa-search" @click="activeClass"></i>
     </div>
@@ -35,6 +36,8 @@ export default {
       } else {
         this.classe = "none";
       }
+
+      this.$refs.input.focus();
     },
   },
 };
