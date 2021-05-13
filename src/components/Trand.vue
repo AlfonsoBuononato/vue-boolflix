@@ -1,11 +1,58 @@
 <template>
-  <div>
-    <div>
-      <ul v-for="(element, index) in trand" :key="index">
-        <li>{{ element.title }}</li>
-      </ul>
+  <main>
+    <div class="title">
+      <h2>TITOLI DEL MOMENTO</h2>
     </div>
-  </div>
+    <div class="container">
+      <div class="box" v-for="(element, index) in trand" :key="index">
+        <img v-if="element.poster_path" :src="element.poster_path" alt="" />
+        <img
+          class="img-else"
+          v-else
+          src="https://www.altavod.com/assets/images/poster-placeholder.png"
+          alt=""
+        />
+        <ul>
+          <li>Titotlo: {{ element.title }}</li>
+          <li>Titolo originale: {{ element.original_title }}</li>
+          <li>
+            <span>Lingua: </span>
+            <img
+              v-if="element.original_language === 'it'"
+              src="../assets/it.png"
+              alt=""
+            />
+            <img
+              v-if="element.original_language === 'en'"
+              src="../assets/en.png"
+              alt=""
+            />
+            <span
+              v-if="
+                element.original_language != 'en' &&
+                  element.original_language != 'it'
+              "
+              >{{ element.original_language }}</span
+            >
+          </li>
+          <li>
+            <i
+              v-for="(element, index) in element.vote_average"
+              :key="index"
+              class="fas fa-star"
+            ></i>
+            <i
+              v-for="(element, index) in 5 - element.vote_average"
+              :key="'A' + index"
+              class="far fa-star"
+            >
+            </i>
+          </li>
+          <li>Trama: {{ element.overview }}</li>
+        </ul>
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -15,8 +62,6 @@ export default {
 };
 </script>
 
-<style scoped>
-* {
-  color: white;
-}
+<style scoped lang="scss">
+@import "@/style/trand.scss";
 </style>

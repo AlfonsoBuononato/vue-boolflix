@@ -5,7 +5,13 @@
     </div>
     <div class="container">
       <div class="box" v-for="(element, index) in serie" :key="index">
-        <img :src="element.poster_path" alt="" />
+        <img v-if="element.poster_path" :src="element.poster_path" alt="" />
+        <img
+          v-else
+          class="img-else"
+          src="https://www.altavod.com/assets/images/poster-placeholder.png"
+          alt=""
+        />
         <ul>
           <li>Titotlo: {{ element.name }}</li>
           <li>Titolo originale: {{ element.original_name }}</li>

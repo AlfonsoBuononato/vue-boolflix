@@ -12,11 +12,13 @@ header {
 .search {
   margin-right: 50px;
   input {
+    width: 0px;
     padding: 2px;
     margin-right: 5px;
     border: 0;
     background-color: #c0c0c0;
     outline: none;
+    transition: width 0.6s;
   }
   input:focus {
     border: 2px solid #018cfd;
@@ -26,5 +28,28 @@ header {
     background-color: #c0c0c0;
     border: 0;
     outline: none;
+  }
+  i:hover {
+    cursor: pointer;
+  }
+  .none {
+    animation-name: chiusura-input;
+    animation-duration: 4s;
+  }
+
+  .active {
+    display: inline-block;
+    animation-name: apertura-input;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    width: 150px;
+  }
+  @keyframes chiusura-ipnut {
+    0% {
+      width: 150px;
+    }
+    98% {
+      width: 0px;
+    }
   }
 }

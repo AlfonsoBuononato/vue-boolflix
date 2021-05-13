@@ -8,13 +8,13 @@
     /></a>
     <div class="search">
       <input
+        :class="classe"
         v-model="inputFilm"
         type="text"
         @keyup="$emit('cercaFilm', inputFilm)"
+        placeholder="Titolo, Film, Serie"
       />
-      <button>
-        cerca
-      </button>
+      <i class="fas fa-search" @click="activeClass"></i>
     </div>
   </header>
 </template>
@@ -25,7 +25,17 @@ export default {
   data() {
     return {
       inputFilm: "",
+      classe: "none",
     };
+  },
+  methods: {
+    activeClass() {
+      if (this.classe === "none") {
+        this.classe = "active";
+      } else {
+        this.classe = "none";
+      }
+    },
   },
 };
 </script>

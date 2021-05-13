@@ -5,10 +5,14 @@ main {
     display: flex;
     overflow: auto;
     .box {
-      width: calc(100% / 6);
+      width: 185px;
+      max-width: 100%;
       position: relative;
       margin: 5px;
       cursor: pointer;
+      .img-else {
+        width: 185px;
+      }
     }
     .box:hover ul {
       display: block;

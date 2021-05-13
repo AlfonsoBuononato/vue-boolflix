@@ -110,6 +110,12 @@ export default {
         .get(this.apiTrand)
         .then((res) => {
           this.dataTrand = res.data.results;
+          res.data.results.forEach((element) => {
+            element.poster_path =
+              "https://image.tmdb.org/t/p/" + "w185" + element.poster_path;
+
+            element.vote_average = Math.ceil(element.vote_average / 2);
+          });
         })
         .catch((error) => {
           console.log(error);
